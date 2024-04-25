@@ -1,4 +1,3 @@
-
 @extends('layouts.base')
 
 @section('content')
@@ -11,6 +10,7 @@
                     <th>{{ __('Description') }}</th>
                     <th>{{ __('Difficulté') }}</th>
                     <th>{{ __('Temps de préparation') }}</th>
+                    <th>{{ __('Image') }}</th> <!-- Nouvelle colonne pour afficher l'image -->
                     <th>{{ __('Actions') }}</th>
                 </tr>
             </thead>
@@ -21,6 +21,13 @@
                     <td>{{ $recipe->description }}</td>
                     <td>{{ $recipe->difficulte }}</td>
                     <td>{{ $recipe->temps_preparation }}</td>
+                    <td>
+                        @if($recipe->image)
+                            <img src="{{ $recipe->image }}" alt="{{ $recipe->titre }}" style="max-width: 100px;">
+                        @else
+                            Aucune image disponible
+                        @endif
+                    </td>
                     <td class="table-action">
                         <a href="{{ route('recipe.edit', $recipe->id) }}">
                             {{ __('Modifier') }}
